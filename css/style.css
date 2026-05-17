@@ -1149,4 +1149,11 @@ img { max-width: 100%; height: auto; display: block; }
 html, body {
   overflow-x: hidden !important;
   width: 100% !important;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Varsayılan Tarayıcı Scrollbar'ını Gizleme (Chrome, Safari) */
+::-webkit-scrollbar {
+  display: none !important;
 }
