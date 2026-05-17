@@ -1,0 +1,80 @@
+:root {
+    --bg: #f7f1ec;
+    --white: #ffffff;
+    --ink: #241f1b;
+    --muted: #77706a;
+    --accent: #FEBE10; /* Temaya uygun turuncu/sari */
+    --accent-soft: #ffe3d3;
+    --progress: 0deg;
+}
+
+.scroll-progress-button {
+    position: fixed;
+    right: 34px;
+    bottom: 34px;
+    z-index: 50;
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background:
+        linear-gradient(var(--white), var(--white)) padding-box,
+        conic-gradient(var(--accent) var(--progress), var(--accent-soft) 0deg) border-box;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(255, 115, 36, 0.18);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.scroll-progress-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(255, 115, 36, 0.24);
+}
+
+.scroll-progress-button:active {
+    transform: translateY(-1px);
+}
+
+.scroll-progress-button__icon {
+    position: relative;
+    width: 18px;
+    height: 18px;
+}
+
+.scroll-progress-button__icon::before,
+.scroll-progress-button__icon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.scroll-progress-button__icon::before {
+    top: 2px;
+}
+
+.scroll-progress-button__icon::after {
+    top: 9px;
+}
+
+@media (max-width: 720px) {
+    .page {
+        width: min(100% - 32px, 560px);
+    }
+
+    .section {
+        min-height: 92vh;
+        padding: 64px 0;
+    }
+
+    .scroll-progress-button {
+        right: 18px;
+        bottom: 18px;
+    }
+}

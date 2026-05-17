@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fırat Otomotiv | Opel & Chevrolet Yetkili Servis - İstanbul İkitelli</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <meta name="description" content="Fırat Otomotiv - İstanbul İkitelli'de Opel ve Chevrolet yetkili servisi. 20+ yıllık tecrübe ile profesyonel araç bakım, check-up ve onarım hizmetleri.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome İkonlar -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Ana Stil Dosyası -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Görsel Karşılaştırma Stilleri -->
+  <link rel="stylesheet" href="gorsel_karsilastirma/style.css">
+  
+  <!-- Özel Scroll Barlar -->
+  <link rel="stylesheet" href="scroll_yan_bar/style.css">
+  <link rel="stylesheet" href="dairesel_scroll_bar/style.css">
+</head>
+<body>
+
+  <!-- Yan Scroll Bar -->
+  <div class="custom-scrollbar" aria-hidden="true">
+      <div class="custom-scrollbar__thumb" id="customScrollbarThumb"></div>
+  </div>
+
+  <!-- Dairesel Scroll Bar (Scroll-to-top) -->
+  <button class="scroll-progress-button" id="scrollTopButton" type="button" aria-label="Sayfanin en ustune git">
+      <span class="scroll-progress-button__icon" aria-hidden="true"></span>
+  </button>
+
+  <!-- ============================================
+       KAYAN YAZI BARI (Ticker)
+       Header üstünde kayan duyuru/bilgi şeridi
+       ============================================ -->
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <span><i class="fa-solid fa-star"></i> Opel & Chevrolet Yetkili Servis</span>
+      <span><i class="fa-solid fa-wrench"></i> Periyodik Bakım Kampanyası Başladı</span>
+      <span><i class="fa-solid fa-percent"></i> İlk Check-Up'ınıza %20 İndirim</span>
+      <span><i class="fa-solid fa-clock"></i> Pzt-Cmt 08:30 - 18:30 Açığız</span>
+      <span><i class="fa-solid fa-phone"></i> Hemen Arayın: 0212 549 91 57 (Pbx)</span>
+      <span><i class="fa-solid fa-location-dot"></i> Dolapdere San. Sit. 21. Ada - İkitelli / İSTANBUL</span>
+      <span><i class="fa-solid fa-car"></i> Ücretsiz Araç Check-Up Fırsatı</span>
+      <span><i class="fa-solid fa-shield-halved"></i> Orijinal Yedek Parça Garantisi</span>
+      <!-- Kopyası (sonsuz döngü için) -->
+      <span><i class="fa-solid fa-star"></i> Opel & Chevrolet Yetkili Servis</span>
+      <span><i class="fa-solid fa-wrench"></i> Periyodik Bakım Kampanyası Başladı</span>
+      <span><i class="fa-solid fa-percent"></i> İlk Check-Up'ınıza %20 İndirim</span>
+      <span><i class="fa-solid fa-clock"></i> Pzt-Cmt 08:30 - 18:30 Açığız</span>
+      <span><i class="fa-solid fa-phone"></i> Hemen Arayın: 0212 549 91 57 (Pbx)</span>
+      <span><i class="fa-solid fa-location-dot"></i> Dolapdere San. Sit. 21. Ada - İkitelli / İSTANBUL</span>
+      <span><i class="fa-solid fa-car"></i> Ücretsiz Araç Check-Up Fırsatı</span>
+      <span><i class="fa-solid fa-shield-halved"></i> Orijinal Yedek Parça Garantisi</span>
+    </div>
+  </div>
+
+  <!-- ============================================
+       HEADER / NAVİGASYON
+       Sabit pozisyonlu, ticker barın altında
+       ============================================ -->
+  <header class="header" id="header">
+    <div class="container">
+      <!-- Header Sol Logolar -->
+      <div class="header-brand-logos" aria-label="Servis ve marka logoları">
+        <img class="header-brand-logo header-brand-logo-castrol" src="images/brand/castrol_service_point.svg" alt="Castrol Service Point" title="Castrol Service Point">
+        <img class="header-brand-logo header-brand-logo-chevrolet" src="images/brand/chevrolet.svg" alt="Chevrolet" title="Chevrolet">
+        <img class="header-brand-logo header-brand-logo-opel" src="images/brand/opel.svg" alt="Opel" title="Opel">
+      </div>
+
+      <!-- Header Orta Başlık -->
+      <a href="#anasayfa" class="header-title">FIRAT OTOMOTİV</a>
+
+      <!-- Mobil Menü Butonu -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigasyon Menüsü -->
+      <nav class="nav" id="navMenu">
+        <a href="#anasayfa">Ana Sayfa</a>
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#hakkimizda">Hakkımızda</a>
+        <a href="#checkup">Check-Up</a>
+        <a href="#iletisim">İletişim</a>
+        
+        <!-- Dil Seçici -->
+        <div class="lang-dropdown" id="langDropdown" aria-haspopup="listbox" aria-expanded="false">
+          <div class="lang-selected" id="langSelected">
+            <img src="https://flagcdn.com/w40/tr.png" alt="Türkçe" class="flag-circle">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <ul class="lang-options" role="listbox">
+            <li role="option" data-lang="tr" data-name="Türkçe" data-flag="tr.png"><img src="https://flagcdn.com/w40/tr.png" alt="Türkçe" class="flag-circle"> Türkçe</li>
+            <li role="option" data-lang="en" data-name="English" data-flag="gb.png"><img src="https://flagcdn.com/w40/gb.png" alt="English" class="flag-circle"> English</li>
+            <li role="option" data-lang="de" data-name="Deutsch" data-flag="de.png"><img src="https://flagcdn.com/w40/de.png" alt="Deutsch" class="flag-circle"> Deutsch</li>
+            <li role="option" data-lang="es" data-name="Español" data-flag="es.png"><img src="https://flagcdn.com/w40/es.png" alt="Español" class="flag-circle"> Español</li>
+          </ul>
+        </div>
+
+        <a href="#randevu" class="nav-cta"><i class="fa-solid fa-calendar-check"></i> Randevu Al</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================
+       HERO BÖLÜMÜ
+       Tam ekran giriş alanı, CTA butonları ve istatistikler
+       ============================================ -->
+  <section class="hero" id="anasayfa">
+    <!-- Arka Plan Görseli -->
+    <div class="hero-bg">
+      <img src="images/hero-bg.png" alt="Fırat Otomotiv profesyonel servis atölyesi" loading="eager">
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <!-- Üst Etiket -->
+        <div class="hero-badge animate-on-scroll">
+          <i class="fa-solid fa-shield-halved"></i>
+          Opel & Chevrolet Yetkili Servis
+        </div>
+
+        <!-- Ana Başlık -->
+        <h1 class="animate-on-scroll delay-1">
+          Aracınız İçin<br><span>Profesyonel</span> Servis<br>Deneyimi
+        </h1>
+
+        <!-- Alt Açıklama -->
+        <p class="animate-on-scroll delay-2">
+          Fırat Otomotiv olarak Opel ve Chevrolet yetkili servisi kimliğiyle, uzman kadromuz ve modern ekipmanlarımızla aracınıza en iyi bakımı sunuyoruz.
+        </p>
+
+        <!-- CTA Butonları -->
+        <div class="hero-buttons animate-on-scroll delay-3">
+          <a href="#randevu" class="btn btn-primary">
+            <i class="fa-solid fa-calendar-check"></i>
+            Randevu Al
+          </a>
+          <a href="#hizmetler" class="btn btn-outline">
+            <i class="fa-solid fa-wrench"></i>
+            Hizmetlerimiz
+          </a>
+        </div>
+
+        <!-- İstatistikler -->
+        <div class="hero-stats animate-on-scroll delay-4">
+          <div class="stat-item">
+            <h3 data-count="20" data-suffix="+">0</h3>
+            <p>Yıllık Tecrübe</p>
+          </div>
+          <div class="stat-item">
+            <h3 data-count="15000" data-suffix="+">0</h3>
+            <p>Mutlu Müşteri</p>
+          </div>
+          <div class="stat-item">
+            <h3 data-count="50000" data-suffix="+">0</h3>
+            <p>Tamamlanan Servis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       KAYAN YAZI BARI (Sabit - Hero/Hizmetler arası)
+       ============================================ -->
+  <div class="ticker-bar ticker-static">
+    <div class="ticker-track">
+      <span><i class="fa-solid fa-star"></i> Opel & Chevrolet Yetkili Servis</span>
+      <span><i class="fa-solid fa-wrench"></i> Periyodik Bakım Kampanyası Başladı</span>
+      <span><i class="fa-solid fa-percent"></i> İlk Check-Up'ınıza %20 İndirim</span>
+      <span><i class="fa-solid fa-clock"></i> Pzt-Cmt 08:30 - 18:30 Açığız</span>
+      <span><i class="fa-solid fa-phone"></i> Hemen Arayın: (0212) 123 45 67</span>
+      <span><i class="fa-solid fa-location-dot"></i> İkitelli / İstanbul</span>
+      <span><i class="fa-solid fa-car"></i> Ücretsiz Araç Check-Up Fırsatı</span>
+      <span><i class="fa-solid fa-shield-halved"></i> Orijinal Yedek Parça Garantisi</span>
+      <!-- Kopya (sonsuz döngü) -->
+      <span><i class="fa-solid fa-star"></i> Opel & Chevrolet Yetkili Servis</span>
+      <span><i class="fa-solid fa-wrench"></i> Periyodik Bakım Kampanyası Başladı</span>
+      <span><i class="fa-solid fa-percent"></i> İlk Check-Up'ınıza %20 İndirim</span>
+      <span><i class="fa-solid fa-clock"></i> Pzt-Cmt 08:30 - 18:30 Açığız</span>
+      <span><i class="fa-solid fa-phone"></i> Hemen Arayın: (0212) 123 45 67</span>
+      <span><i class="fa-solid fa-location-dot"></i> İkitelli / İstanbul</span>
+      <span><i class="fa-solid fa-car"></i> Ücretsiz Araç Check-Up Fırsatı</span>
+      <span><i class="fa-solid fa-shield-halved"></i> Orijinal Yedek Parça Garantisi</span>
+    </div>
+  </div>
+
+  <!-- ============================================
+       HİZMETLER BÖLÜMÜ
+       Sunulan hizmetlerin kartlar halinde gösterimi
+       ============================================ -->
+  <section class="services" id="hizmetler">
+    <div class="container">
+      <!-- Bölüm Başlığı -->
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag">Hizmetlerimiz</span>
+        <h2>Profesyonel Servis Hizmetleri</h2>
+        <p>Aracınız için ihtiyaç duyduğunuz tüm bakım ve onarım hizmetlerini uzman kadromuzla sunuyoruz.</p>
+      </div>
+
+      <!-- Hizmet Kartları -->
+      <div class="services-grid">
+        <article class="card animate-on-scroll fade-left delay-1">
+          <div class="content" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('images/maintenance.png');">
+            <div class="card-info">
+              <h3>Periyodik Bakım</h3>
+              <p>Yağ, filtre, fren ve sarf malzeme kontrollerini aracınızın bakım planına uygun şekilde tamamlıyoruz.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card animate-on-scroll zoom-in delay-2">
+          <div class="content" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('images/checkup.png');">
+            <div class="card-info">
+              <h3>Arıza Tespit</h3>
+              <p>Bilgisayarlı test ekipmanlarıyla motor, elektrik ve elektronik sistemlerdeki sorunları hızlıca belirliyoruz.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card animate-on-scroll fade-right delay-3">
+          <div class="content" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('images/repair.png');">
+            <div class="card-info">
+              <h3>Mekanik Onarım</h3>
+              <p>Fren, süspansiyon, şanzıman ve yürüyen aksam onarımlarını güvenilir işçilikle gerçekleştiriyoruz.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card animate-on-scroll fade-left delay-1">
+          <div class="content" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('images/workshop.png');">
+            <div class="card-info">
+              <h3>Check-Up Kontrol</h3>
+              <p>Aracınız yolda kalmadan önce motor, fren, akü, lastik ve aydınlatma kontrollerini detaylı şekilde inceliyoruz.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card animate-on-scroll fade-right delay-2">
+          <div class="content" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('images/hero-bg.png');">
+            <div class="card-info">
+              <h3>Yedek Parça</h3>
+              <p>Opel ve Chevrolet için orijinal ya da eşdeğer kaliteli parçalarla uzun ömürlü servis çözümleri sunuyoruz.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       HAKKIMIZDA / NEDEN BİZ BÖLÜMÜ
+       Şirket tanıtımı ve avantajlar
+       ============================================ -->
+  <section class="about" id="hakkimizda">
+    <div class="container">
+      <div class="about-grid">
+        <!-- Sol: Görsel (Karşılaştırma Slider) -->
+        <div class="about-image animate-on-scroll fade-left" style="height: 100%; min-height: 400px; overflow: hidden; border-radius: 16px;">
+          <div class="comparison-container">
+            <!-- Sağ tarafta kalacak arka plan görseli (After / Sonrası) -->
+            <div class="image-after" style="background-image: url('images/after_car.png');"></div>
+            
+            <!-- Sol tarafta kalacak ve genişliği değişecek görsel (Before / Öncesi) -->
+            <div class="image-before" style="background-image: url('images/before_car.png');"></div>
+            
+            <!-- Ortadaki turuncu kontrol butonu -->
+            <div class="slider-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 17L4 12L9 7V17Z"/>
+                    <path d="M15 7L20 12L15 17V7Z"/>
+                </svg>
+            </div>
+            
+            <!-- Kullanıcının etkileşime gireceği görünmez input -->
+            <input type="range" min="0" max="100" value="50" class="slider" id="slider">
+          </div>
+        </div>
+
+        <!-- Sağ: İçerik -->
+        <div class="about-content animate-on-scroll fade-right">
+          <span class="section-tag">Hakkımızda</span>
+          <h2>Neden Fırat Otomotiv?</h2>
+          <p>20 yılı aşkın süredir İstanbul İkitelli'de hizmet veren Fırat Otomotiv, müşteri memnuniyetini ön planda tutarak kaliteli ve güvenilir servis hizmeti sunmaktadır.</p>
+
+          <!-- Özellik Listesi -->
+          <div class="feature-list">
+            <div class="feature-item animate-on-scroll delay-1">
+              <div class="feature-icon"><i class="fa-solid fa-medal"></i></div>
+              <div>
+                <h4>20+ Yıl Tecrübe</h4>
+                <p>Sektördeki uzun yıllara dayanan deneyimimizle aracınıza en doğru müdahaleyi yapıyoruz.</p>
+              </div>
+            </div>
+            <div class="feature-item animate-on-scroll delay-2">
+              <div class="feature-icon"><i class="fa-solid fa-certificate"></i></div>
+              <div>
+                <h4>Kalite Garantisi</h4>
+                <p>Orijinal ve eşdeğer kalitede yedek parçalar kullanarak uzun ömürlü çözümler sunuyoruz.</p>
+              </div>
+            </div>
+            <div class="feature-item animate-on-scroll delay-3">
+              <div class="feature-icon"><i class="fa-solid fa-tags"></i></div>
+              <div>
+                <h4>Uygun Fiyat</h4>
+                <p>Rekabetçi fiyat politikamızla bütçenize uygun servis seçenekleri sunuyoruz.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CHECK-UP BÖLÜMÜ
+       Araç kontrol hizmetinin detaylı tanıtımı
+       ============================================ -->
+  <section class="checkup" id="checkup">
+    <div class="container">
+      <div class="checkup-grid">
+        <!-- Sol: İçerik -->
+        <div class="checkup-content">
+          <span class="section-tag animate-on-scroll">Check-Up</span>
+          <h2 class="animate-on-scroll delay-1">Check-Up Nedir?</h2>
+          <p class="animate-on-scroll delay-2">
+            Aracınız arızalanmadan önce olası sorunları tespit edip, zamanınızı, paranızı ve aracınızın değerini korumanızı sağlayan kapsamlı kontrol hizmetidir.
+          </p>
+
+          <!-- Kontrol Listesi -->
+          <ul class="checkup-list animate-on-scroll delay-3">
+            <li><i class="fa-solid fa-circle-check"></i> Motor ve şanzıman kontrolü</li>
+            <li><i class="fa-solid fa-circle-check"></i> Fren sistemi ve balata kontrolü</li>
+            <li><i class="fa-solid fa-circle-check"></i> Süspansiyon ve direksiyon kontrolü</li>
+            <li><i class="fa-solid fa-circle-check"></i> Elektrik ve aydınlatma testi</li>
+            <li><i class="fa-solid fa-circle-check"></i> Egzoz emisyon ölçümü</li>
+            <li><i class="fa-solid fa-circle-check"></i> Akü ve şarj sistemi testi</li>
+            <li><i class="fa-solid fa-circle-check"></i> Lastik ve rot-balans kontrolü</li>
+          </ul>
+
+          <a href="#randevu" class="btn btn-primary animate-on-scroll delay-4" style="margin-top:24px;">
+            <i class="fa-solid fa-calendar-check"></i>
+            Check-Up Randevusu Al
+          </a>
+        </div>
+
+        <!-- Sağ: Görsel -->
+        <div class="checkup-image animate-on-scroll zoom-in">
+          <img src="images/checkup.png" alt="Araç check-up kontrol hizmeti">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       RANDEVU BÖLÜMÜ
+       Online randevu formu ve Google Harita
+       ============================================ -->
+  <section class="appointment" id="randevu">
+    <div class="container">
+      <!-- Bölüm Başlığı -->
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag">Online Randevu</span>
+        <h2>Hemen Randevunuzu Oluşturun</h2>
+        <p>Formu doldurarak size en uygun zamanda randevu alabilirsiniz. En kısa sürede sizinle iletişime geçeceğiz.</p>
+      </div>
+
+      <div class="appointment-grid">
+        <!-- Sol: Form -->
+        <div class="animate-on-scroll fade-left">
+          <div class="appointment-form">
+            <h3><i class="fa-solid fa-calendar-plus"></i> Randevu Bilgileri</h3>
+
+            <form id="appointmentForm">
+              <div class="form-grid">
+                <!-- Ad Soyad -->
+                <div class="form-group">
+                  <label for="fullname">Ad Soyad *</label>
+                  <input type="text" id="fullname" name="fullname" placeholder="Adınız Soyadınız" required>
+                </div>
+
+                <!-- E-posta -->
+                <div class="form-group">
+                  <label for="email">E-posta *</label>
+                  <input type="email" id="email" name="email" placeholder="ornek@mail.com" required>
+                </div>
+
+                <!-- Telefon -->
+                <div class="form-group">
+                  <label for="phone">Telefon *</label>
+                  <input type="tel" id="phone" name="phone" placeholder="0532 123 45 67" required>
+                </div>
+
+                <!-- Araç Markası -->
+                <div class="form-group">
+                  <label for="vehicle">Araç Markası *</label>
+                  <select id="vehicle" name="vehicle" required>
+                    <option value="">Marka Seçiniz</option>
+                    <option value="Opel">Opel</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                    <option value="Volkswagen">Volkswagen</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Renault">Renault</option>
+                    <option value="Fiat">Fiat</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Hyundai">Hyundai</option>
+                    <option value="Peugeot">Peugeot</option>
+                    <option value="Citroen">Citroen</option>
+                    <option value="Diger">Diğer</option>
+                  </select>
+                </div>
+
+                <!-- Model -->
+                <div class="form-group">
+                  <label for="model">Model</label>
+                  <select id="model" name="model" disabled>
+                    <option value="">Önce Marka Seçiniz</option>
+                  </select>
+                </div>
+
+                <!-- Model Yılı -->
+                <div class="form-group">
+                  <label for="year">Model Yılı</label>
+                  <select id="year" name="year">
+                    <option value="">Yıl Seçiniz</option>
+                    <!-- JS ile doldurulacak -->
+                  </select>
+                </div>
+
+                <!-- Gelme Sebebi -->
+                <div class="form-group">
+                  <label for="reason">Gelme Sebebi *</label>
+                  <select id="reason" name="reason" required>
+                    <option value="">Hizmet Seçiniz</option>
+                    <option value="Periyodik Bakım">Periyodik Bakım</option>
+                    <option value="Arıza Tespit">Arıza Tespit</option>
+                    <option value="Mekanik Onarım">Mekanik Onarım</option>
+                    <option value="Check-Up Kontrol">Check-Up Kontrol</option>
+                    <option value="Yedek Parça">Yedek Parça</option>
+                    <option value="Diğer">Diğer</option>
+                  </select>
+                </div>
+
+                <!-- Özel Tarih Seçici -->
+                <div class="date-picker-wrapper">
+                  <label><i class="fa-solid fa-calendar-days"></i> Randevu Tarihi Seçiniz *</label>
+                  <div class="date-grid" id="dateGrid">
+                    <!-- JS ile doldurulacak -->
+                  </div>
+                  <input type="hidden" id="date" name="date" required>
+                  <div class="picker-info">
+                    <span><i class="dot available"></i> Müsait</span>
+                    <span><i class="dot booked"></i> Dolu</span>
+                  </div>
+                </div>
+
+                <!-- Özel Saat Seçici -->
+                <div class="time-picker-wrapper" id="timePickerWrapper">
+                  <label><i class="fa-solid fa-clock"></i> Randevu Saati Seçiniz *</label>
+                  <div class="time-grid" id="timeGrid">
+                    <!-- JS ile doldurulacak -->
+                  </div>
+                  <input type="hidden" id="time" name="time" required>
+                  <div class="picker-info">
+                    <span><i class="dot available"></i> Müsait</span>
+                    <span><i class="dot booked"></i> Dolu</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Gönder Butonu -->
+              <button type="submit" class="btn btn-primary btn-submit">
+                <i class="fa-solid fa-paper-plane"></i>
+                Randevu Oluştur
+              </button>
+            </form>
+
+            <!-- Başarı Mesajı (form gönderilince görünür) -->
+            <div class="form-success">
+              <i class="fa-solid fa-circle-check"></i>
+              <h3>Randevunuz Alındı!</h3>
+              <p>En kısa sürede sizinle iletişime geçeceğiz. Teşekkür ederiz.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sağ: Google Harita -->
+        <div class="animate-on-scroll fade-right">
+
+          <div class="map-wrapper" title="Haritayı büyütmek için tıklayın">
+            <!-- Kapatma Butonu -->
+            <button class="map-close-btn" aria-label="Haritayı kapat">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Google Maps Embed - Dolapdere Sanayi Sitesi -->
+            <iframe
+              src="https://maps.google.com/maps?q=Organize+Sanayi+B%C3%B6lgesi+Dolapdere+Sanayi+Sitesi+21.+Ada+%C4%B0kitelli+%C4%B0stanbul&t=&z=15&ie=UTF8&iwloc=B&output=embed"
+              width="600"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Fırat Otomotiv Konum - Dolapdere San. Sit.">
+            </iframe>
+
+            <!-- Harita Üzeri Bilgi Katmanı -->
+            <div class="map-overlay">
+              <span><i class="fa-solid fa-expand"></i> Haritayı Büyüt</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER / İLETİŞİM
+       Site altbilgisi, iletişim ve sosyal medya
+       ============================================ -->
+  <footer class="footer" id="iletisim">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Marka Bilgisi -->
+        <div class="footer-brand animate-on-scroll fade-left">
+          <a href="#anasayfa" class="footer-logo">FIRAT OTOMOTİV</a>
+          <p>Opel ve Chevrolet yetkili servisi olarak 20 yılı aşkın tecrübemizle İstanbul İkitelli'de profesyonel araç servis, bakım ve onarım hizmetleri sunuyoruz.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Hızlı Linkler -->
+        <div class="footer-col animate-on-scroll delay-1">
+          <h4>Hızlı Erişim</h4>
+          <ul>
+            <li><a href="#anasayfa"><i class="fa-solid fa-chevron-right"></i> Ana Sayfa</a></li>
+            <li><a href="#hizmetler"><i class="fa-solid fa-chevron-right"></i> Hizmetler</a></li>
+            <li><a href="#hakkimizda"><i class="fa-solid fa-chevron-right"></i> Hakkımızda</a></li>
+            <li><a href="#randevu"><i class="fa-solid fa-chevron-right"></i> Randevu</a></li>
+          </ul>
+        </div>
+
+        <!-- Hizmetler -->
+        <div class="footer-col animate-on-scroll delay-2">
+          <h4>Hizmetler</h4>
+          <ul>
+            <li><a href="#hizmetler"><i class="fa-solid fa-chevron-right"></i> Periyodik Bakım</a></li>
+            <li><a href="#hizmetler"><i class="fa-solid fa-chevron-right"></i> Arıza Tespit</a></li>
+            <li><a href="#checkup"><i class="fa-solid fa-chevron-right"></i> Check-Up</a></li>
+            <li><a href="#hizmetler"><i class="fa-solid fa-chevron-right"></i> Mekanik Onarım</a></li>
+          </ul>
+        </div>
+
+        <!-- İletişim Bilgileri -->
+        <div class="footer-col footer-contact-col animate-on-scroll delay-3">
+          <h4>İletişim</h4>
+          <ul>
+            <li><a href="#"><i class="fa-solid fa-location-dot"></i> Organize San. Bölgesi Dolapdere San. Sit. 21. Ada No:3-5-7-9 İkitelli / İSTANBUL</a></li>
+            <li><a href="mailto:firat@firatopel.com"><i class="fa-solid fa-envelope"></i> firat@firatopel.com</a></li>
+            <li><a href="tel:+902125499157"><i class="fa-solid fa-phone"></i> 0212 549 91 57 (Pbx)</a></li>
+            <li><a href="tel:+902125499159"><i class="fa-solid fa-fax"></i> 0212 549 91 59</a></li>
+            <li><a href="#"><i class="fa-solid fa-clock"></i> Pzt-Cmt: 08:30 - 18:30</a></li>
+          </ul>
+          <div class="footer-brand-logos" aria-label="Servis ve marka logoları">
+            <img class="footer-brand-logo footer-brand-logo-castrol" src="images/brand/castrol_service_point.svg" alt="Castrol Service Point" title="Castrol Service Point" loading="lazy">
+            <img class="footer-brand-logo footer-brand-logo-chevrolet" src="images/brand/chevrolet.svg" alt="Chevrolet" title="Chevrolet" loading="lazy">
+            <img class="footer-brand-logo footer-brand-logo-opel" src="images/brand/opel.svg" alt="Opel" title="Opel" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Alt Çizgi -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Fırat Otomotiv. Tüm hakları saklıdır.</p>
+        <img class="footer-satep-logo" src="images/satep_logo.svg" alt="Satep" title="Satep" loading="lazy">
+        <div class="payment-cards">
+          <img class="payment-card-logo" src="images/payment/visa.svg" alt="Visa" title="Visa" loading="lazy">
+          <img class="payment-card-logo" src="images/payment/mastercard.svg" alt="Mastercard" title="Mastercard" loading="lazy">
+          <img class="payment-card-logo" src="images/payment/maestro.svg" alt="Maestro" title="Maestro" loading="lazy">
+          <img class="payment-card-logo" src="images/payment/troy.svg" alt="Troy" title="Troy" loading="lazy">
+          <img class="payment-card-logo payment-card-logo-wide payment-card-logo-amex" src="images/payment/amex.svg" alt="American Express" title="American Express" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Harita Büyütme Arkaplan Karartması (body seviyesinde) -->
+  <div class="map-backdrop"></div>
+
+  <!-- Çoklu Dil (i18n) Dosyaları -->
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+
+  <!-- Ana JavaScript Dosyası -->
+  <script src="js/main.js"></script>
+  
+  <!-- Görsel Karşılaştırma Scripti -->
+  <script src="gorsel_karsilastirma/script.js"></script>
+
+  <!-- Ozel Scroll Scriptleri -->
+  <script src="scroll_yan_bar/script.js"></script>
+  <script src="dairesel_scroll_bar/script.js"></script>
+</body>
+</html>

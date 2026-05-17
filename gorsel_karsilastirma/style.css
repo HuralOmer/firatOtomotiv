@@ -1,0 +1,105 @@
+/* Görsel Karşılaştırma Stilleri */
+.comparison-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Hafif bir gölge */
+}
+
+/* Sağdaki (Alttaki) görsel/alan */
+.image-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0ebe4; /* Resimdeki sağ tarafın rengi */
+    background-image: url('https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); /* Örnek kedi resmi */
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+/* Soldaki (Üstteki) görsel/alan */
+.image-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Başlangıç değeri %50 */
+    height: 100%;
+    background-color: #f4f1ec; /* Resimdeki sol tarafın rengi */
+    background-image: url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); /* Örnek kedi resmi */
+    background-size: cover; /* veya 600px 600px diyerek resmi sabitleyebilirsiniz */
+    /* background-size'ı piksel vererek, genişlik küçülse bile resmin oranının bozulmamasını sağlayabiliriz */
+    background-size: 600px 100%;
+    background-position: left center;
+    z-index: 2;
+    border-right: 3px solid white; /* Ortadaki ayırıcı beyaz çizgi */
+}
+
+/* Ortadaki turuncu düğme */
+.slider-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background-color: #f57c24; /* Resimdeki turuncu renk */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    pointer-events: none; /* Tıklamaların altındaki input'a geçmesini sağlar */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.slider-button svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Etkileşim için range input'u (görünmez) */
+.slider {
+    position: absolute;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    margin: 0;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    cursor: ew-resize; /* Fare imlecini yatay kaydırma olarak değiştirir */
+}
+
+/* Webkit (Chrome, Safari vs.) için thumb (tutamaç) ayarları */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 60px; /* Düğme genişliğine yakın bir değer */
+    height: 100%; /* Tüm yüksekliği kaplasın ki her yerden tutulabilsin */
+    background: transparent;
+    cursor: ew-resize;
+}
+
+/* Firefox için thumb ayarları */
+.slider::-moz-range-thumb {
+    width: 60px;
+    height: 100%;
+    background: transparent;
+    cursor: ew-resize;
+    border: none;
+}
+
+/* Javascript ile tetiklenen tanıtım animasyonu durumu */
+.comparison-container.animating .image-before,
+.comparison-container.animating .slider-button {
+    transition: width 0.8s ease-in-out, left 0.8s ease-in-out;
+}

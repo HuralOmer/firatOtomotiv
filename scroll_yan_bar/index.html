@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozel Scrollbar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="custom-scrollbar" aria-hidden="true">
+        <div class="custom-scrollbar__thumb" id="customScrollbarThumb"></div>
+    </div>
+
+    <main class="page">
+        <section class="section section--intro">
+            <div class="section__content">
+                <span>Pet Studio</span>
+                <h1>Ozel scrollbar tasarimi</h1>
+                <p>Sayfayi asagi kaydirinca sagdaki native scrollbar pembe zemin ve turuncu tutamac ile gorunur.</p>
+            </div>
+        </section>
+
+        <section class="section section--light">
+            <div class="section__content">
+                <span>Bakim</span>
+                <h2>Track rengi acik pembe</h2>
+                <p>Scrollbar arka zemini gorseldeki gibi ince ve acik tonlu tutuldu.</p>
+            </div>
+        </section>
+
+        <section class="section section--warm">
+            <div class="section__content">
+                <span>Scroll</span>
+                <h2>Tutamac turuncu</h2>
+                <p>Chrome, Edge ve Safari icin WebKit scrollbar kurallari kullanildi.</p>
+            </div>
+        </section>
+
+        <section class="section section--light">
+            <div class="section__content">
+                <span>Uyumluluk</span>
+                <h2>Firefox destegi de var</h2>
+                <p>Firefox icin ayni renkler `scrollbar-color` ile tanimlandi.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

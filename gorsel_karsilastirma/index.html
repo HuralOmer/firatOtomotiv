@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Görsel Karşılaştırma</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="comparison-container">
+    <!-- Sağ tarafta kalacak arka plan görseli (After) -->
+    <div class="image-after"></div>
+    
+    <!-- Sol tarafta kalacak ve genişliği değişecek görsel (Before) -->
+    <div class="image-before"></div>
+    
+    <!-- Ortadaki turuncu kontrol butonu -->
+    <div class="slider-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 17L4 12L9 7V17Z"/>
+            <path d="M15 7L20 12L15 17V7Z"/>
+        </svg>
+    </div>
+    
+    <!-- Kullanıcının etkileşime gireceği görünmez input -->
+    <input type="range" min="0" max="100" value="50" class="slider" id="slider">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

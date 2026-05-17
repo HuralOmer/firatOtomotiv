@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairesel Scroll Bar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="scroll-progress-button" id="scrollTopButton" type="button" aria-label="Sayfanin en ustune git">
+        <span class="scroll-progress-button__icon" aria-hidden="true"></span>
+    </button>
+
+    <main class="page">
+        <section class="section section--hero">
+            <div class="section__inner">
+                <span class="eyebrow">Scroll progress</span>
+                <h1>Dairesel scroll butonu</h1>
+                <p>Sayfa asagi indikce sag alttaki dairesel bar dolar. En alta inince halka tamamen turuncu olur.</p>
+            </div>
+        </section>
+
+        <section class="section section--white">
+            <div class="section__inner">
+                <span class="eyebrow">Dolum</span>
+                <h2>Scroll yuzdesine gore halka dolar</h2>
+                <p>JavaScript sayfanin konumunu hesaplar ve CSS degiskenini gunceller.</p>
+            </div>
+        </section>
+
+        <section class="section section--soft">
+            <div class="section__inner">
+                <span class="eyebrow">Buton</span>
+                <h2>Her konumdan en uste doner</h2>
+                <p>Butona tiklandiginda sayfa yumusak animasyonla en tepeye gider.</p>
+            </div>
+        </section>
+
+        <section class="section section--white">
+            <div class="section__inner">
+                <span class="eyebrow">Tamamlandi</span>
+                <h2>Sayfanin sonunda halka tamamen dolar</h2>
+                <p>En alta geldiginde progress degeri yuzde yuze ulasir.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

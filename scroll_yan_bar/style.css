@@ -1,0 +1,64 @@
+:root {
+    --scroll-track: #f7dedf;
+    --stripe-yellow: #FEBE10; /* Temaya uymasi icin */
+    --stripe-black: #171717;
+    --stripe-yellow-hover: #D9A40E;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.custom-scrollbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10000;
+    width: 12px;
+    height: 100vh;
+    background: var(--scroll-track);
+    pointer-events: none;
+}
+
+.custom-scrollbar__thumb {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    width: 7px;
+    min-height: 32px;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--stripe-yellow) 0,
+        var(--stripe-yellow) 7px,
+        var(--stripe-black) 7px,
+        var(--stripe-black) 14px
+    );
+    border-radius: 999px;
+    transition: background 0.3s ease;
+}
+
+body.is-scrolled .custom-scrollbar__thumb {
+    background: repeating-linear-gradient(
+        45deg,
+        var(--stripe-yellow-hover) 0,
+        var(--stripe-yellow-hover) 7px,
+        var(--stripe-black) 7px,
+        var(--stripe-black) 14px
+    );
+}
+
+@media (max-width: 720px) {
+    .custom-scrollbar {
+        width: 10px;
+    }
+
+    .custom-scrollbar__thumb {
+        right: 2px;
+        width: 6px;
+    }
+
+    .section {
+        padding: 64px 20px;
+    }
+}
