@@ -408,7 +408,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   /* Desktop 3-2 */
   .card {
     width: calc(33.333% - 23px);
@@ -909,9 +909,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ============================================
-   RESPONSIVE - Desktop (1024px)
+   RESPONSIVE - Desktop (1200px)
    ============================================ */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .menu-toggle { display: none; }
   .nav {
     position: static; width: auto; height: auto;
@@ -1143,4 +1143,10 @@ img { max-width: 100%; height: auto; display: block; }
   .footer-contact-col .footer-brand-logo {
     height: 56px !important; /* Mobilde de 2 katına çıkar */
   }
+}
+
+/* Sayfa Taşmalarını Önleme */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
 }
