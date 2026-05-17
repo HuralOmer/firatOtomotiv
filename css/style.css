@@ -1148,7 +1148,9 @@ img { max-width: 100%; height: auto; display: block; }
 /* Sayfa Taşmalarını Önleme */
 html, body {
   overflow-x: hidden !important;
+  max-width: 100vw !important;
   width: 100% !important;
+  position: relative !important;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }

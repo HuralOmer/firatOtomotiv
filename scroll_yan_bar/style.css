@@ -1,5 +1,5 @@
 :root {
-    --scroll-track: #f7dedf;
+    --scroll-track: transparent; /* Sayfadaki boşluk algısını yok etmek için saydam yapıldı */
     --stripe-yellow: #FEBE10; /* Temaya uymasi icin */
     --stripe-black: #171717;
     --stripe-yellow-hover: #D9A40E;
