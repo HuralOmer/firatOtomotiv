@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const scrollbarThumb = document.getElementById('customScrollbarThumb');
+    let scrollHideTimer;
+
+    function showScrollbarWhileScrolling() {
+        document.body.classList.add('is-scrolling');
+        window.clearTimeout(scrollHideTimer);
+        scrollHideTimer = window.setTimeout(() => {
+            document.body.classList.remove('is-scrolling');
+        }, 850);
+    }
 
     function updateScrollState() {
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -14,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateScrollState();
-    window.addEventListener('scroll', updateScrollState, { passive: true });
+    window.addEventListener('scroll', () => {
+        showScrollbarWhileScrolling();
+        updateScrollState();
+    }, { passive: true });
     window.addEventListener('resize', updateScrollState);
 });

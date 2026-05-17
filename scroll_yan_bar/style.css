@@ -19,6 +19,14 @@
     height: 100vh;
     background: var(--scroll-track);
     pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+body.is-scrolling .custom-scrollbar {
+    opacity: 1;
+    visibility: visible;
 }
 
 .custom-scrollbar__thumb {
