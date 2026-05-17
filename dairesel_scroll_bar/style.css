@@ -25,20 +25,7 @@
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 12px 30px rgba(255, 115, 36, 0.18);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-        opacity 180ms ease,
-        visibility 180ms ease,
-        transform 180ms ease,
-        box-shadow 180ms ease;
-}
-
-body.is-scrolling .scroll-progress-button {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .scroll-progress-button:hover {

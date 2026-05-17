@@ -1,8 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
     const scrollbarThumb = document.getElementById('customScrollbarThumb');
     let scrollHideTimer;
+    let scrollIntentTimer;
+    let hasScrollIntent = false;
+
+    function markScrollIntent() {
+        hasScrollIntent = true;
+        window.clearTimeout(scrollIntentTimer);
+        scrollIntentTimer = window.setTimeout(() => {
+            hasScrollIntent = false;
+        }, 1200);
+    }
+
+    function hideScrollIndicators() {
+        window.clearTimeout(scrollHideTimer);
+        document.body.classList.remove('is-scrolling');
+    }
 
     function showScrollbarWhileScrolling() {
+        if (!hasScrollIntent || window.scrollY <= 0) {
+            hideScrollIndicators();
+            return;
+        }
+
         document.body.classList.add('is-scrolling');
         window.clearTimeout(scrollHideTimer);
         scrollHideTimer = window.setTimeout(() => {
@@ -23,9 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateScrollState();
+    hideScrollIndicators();
+    window.addEventListener('wheel', markScrollIntent, { passive: true });
+    window.addEventListener('touchmove', markScrollIntent, { passive: true });
+    window.addEventListener('keydown', (event) => {
+        if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(event.key)) {
+            markScrollIntent();
+        }
+    });
     window.addEventListener('scroll', () => {
         showScrollbarWhileScrolling();
         updateScrollState();
     }, { passive: true });
-    window.addEventListener('resize', updateScrollState);
+    window.addEventListener('resize', () => {
+        updateScrollState();
+        if (window.scrollY <= 0) {
+            hideScrollIndicators();
+        }
+    });
 });
