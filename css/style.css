@@ -136,12 +136,12 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%; max-width: none; margin: 0;
   position: relative;
   display: grid; align-items: center;
-  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
-  gap: 20px;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  gap: clamp(8px, 2vw, 20px);
 }
 .header-brand-logos {
   display: flex; align-items: center; gap: 18px;
-  min-width: 0; justify-self: start;
+  min-width: 0; max-width: 100%; justify-self: start;
 }
 .header-brand-logo {
   flex: 0 0 auto;
@@ -154,11 +154,16 @@ img { max-width: 100%; height: auto; display: block; }
 .header-brand-logo-opel { width: 42px; }
 .header-title {
   justify-self: center;
+  min-width: 0;
+  max-width: 100%;
   color: var(--primary);
   font-size: 1.14rem;
   font-weight: 900;
   letter-spacing: 0;
   white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
 }
 
 /* Logo */
@@ -918,13 +923,11 @@ img { max-width: 100%; height: auto; display: block; }
     background: none; backdrop-filter: none;
     flex-direction: row; gap: 12px;
     justify-content: flex-end; justify-self: end;
+    min-width: 0;
   }
   .nav a { font-size: 0.88rem; }
   .nav-cta {
-    padding: 6px 5px !important;
-    font-size: 0.88rem !important;
-    gap: 3px;
-    margin-left: 16px;
+    display: none !important;
   }
   .hero h1 { font-size: 3.4rem; }
   .hero p { font-size: 1.1rem; }
@@ -974,6 +977,26 @@ img { max-width: 100%; height: auto; display: block; }
   .header-brand-logo-opel { width: 16px; }
   .header-title { font-size: 0.72rem; }
   .menu-toggle span { width: 24px; }
+}
+
+@media (max-width: 420px) {
+  .header {
+    padding: 8px 12px;
+  }
+  .header.full-width { padding: 8px 12px; }
+  .header-brand-logo {
+    height: 16px;
+  }
+  .header-brand-logo-castrol { width: 36px; }
+  .header-brand-logo-chevrolet { width: 32px; }
+  .header-brand-logo-opel { width: 14px; }
+  .header-title { font-size: 0.66rem; }
+  .menu-toggle {
+    align-items: center;
+    flex: 0 0 30px;
+    width: 30px;
+  }
+  .menu-toggle span { width: 22px; }
 }
 
 /* ============================================
@@ -1106,6 +1129,28 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-cta {
   padding-left: 28px !important;
   padding-right: 28px !important;
+}
+
+@media (min-width: 1200px) {
+  .lang-dropdown {
+    margin-left: 4px;
+    margin-right: 8px;
+  }
+  .nav-cta {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  .lang-dropdown {
+    margin-left: auto;
+    margin-right: 16px;
+  }
+  .nav-cta {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
 }
 
 /* Mobil Görünümde Footer Logolarını Ortalama */
