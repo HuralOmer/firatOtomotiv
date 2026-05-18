@@ -552,12 +552,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .castrol-ticker-track img {
   flex: 0 0 auto;
-  height: 68px;
-  width: 224px;
+  height: 44px;
+  width: auto;
   object-fit: contain;
-  background: #fff;
-  padding: 6px 12px;
-  border-radius: 8px;
 }
 @keyframes castrolTicker {
   0% { transform: translateX(0); }
