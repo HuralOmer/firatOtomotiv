@@ -213,6 +213,39 @@ document.addEventListener('DOMContentLoaded', () => {
     "#reason option[value='']": "appt.form.reason"
   };
 
+  const languageMeta = {
+    tr: { flag: "tr.png" },
+    en: { flag: "gb.png" },
+    de: { flag: "de.png" },
+    es: { flag: "es.png" }
+  };
+
+  function getPageLanguage() {
+    const pageLang = document.documentElement.getAttribute('data-page-lang') || document.documentElement.lang || 'tr';
+    return translations[pageLang] ? pageLang : 'tr';
+  }
+
+  function getLanguageUrl(lang) {
+    const currentLang = getPageLanguage();
+    const hash = window.location.hash || '';
+    const indexFile = window.location.protocol === 'file:' ? 'index.html' : '';
+
+    if (currentLang === 'tr') {
+      return lang === 'tr' ? `${indexFile || './'}${hash}` : `${lang}/${indexFile}${hash}`;
+    }
+
+    return lang === 'tr' ? `../${indexFile}${hash}` : `../${lang}/${indexFile}${hash}`;
+  }
+
+  function updateSelectedLanguage(lang) {
+    if (!langSelected || !languageMeta[lang]) return;
+
+    langSelected.innerHTML = `
+      <img src="https://flagcdn.com/w40/${languageMeta[lang].flag}" alt="${lang}" class="flag-circle">
+      <i class="fa-solid fa-chevron-down"></i>
+    `;
+  }
+
 
   // 2. Ana Dil Değiştirme Fonksiyonu
   function changeLanguage(lang) {
@@ -268,46 +301,28 @@ document.addEventListener('DOMContentLoaded', () => {
   langOptions.forEach(option => {
     option.addEventListener('click', (e) => {
       const lang = option.getAttribute('data-lang');
-      const flag = option.getAttribute('data-flag');
-      const currentLang = document.documentElement.lang || localStorage.getItem('selectedLang') || 'tr';
+      const currentLang = getPageLanguage();
       const shouldReload = currentLang !== lang;
 
       if (shouldReload) {
-        localStorage.setItem('selectedLang', lang);
+        e.preventDefault();
         e.stopImmediatePropagation();
-        window.location.reload();
+        localStorage.setItem('selectedLang', lang);
+        window.location.href = getLanguageUrl(lang);
         return;
       }
       
       // Arayüzde bayrağı güncelle
-      if(langSelected) {
-          langSelected.innerHTML = `
-            <img src="https://flagcdn.com/w40/${flag}" alt="${lang}" class="flag-circle">
-            <i class="fa-solid fa-chevron-down"></i>
-          `;
-      }
+      updateSelectedLanguage(lang);
       
       // Metinleri çevir
       changeLanguage(lang);
     });
   });
 
-  // 4. Sayfa yüklendiğinde hafızadaki dili çek (veya varsayılan TR kullan)
-  const savedLang = localStorage.getItem('selectedLang') || 'tr';
-  if (savedLang !== 'tr') {
-    // Listeden o dili bulup UI'yi (bayrağı) update et
-    const activeOption = Array.from(langOptions).find(opt => opt.getAttribute('data-lang') === savedLang);
-    if (activeOption) {
-        const flag = activeOption.getAttribute('data-flag');
-        if(langSelected) {
-            langSelected.innerHTML = `
-              <img src="https://flagcdn.com/w40/${flag}" alt="${savedLang}" class="flag-circle">
-              <i class="fa-solid fa-chevron-down"></i>
-            `;
-        }
-    }
-    // Metinleri çevir
-    changeLanguage(savedLang);
-  }
+  // 4. Sayfa yüklendiğinde URL'deki dil sürümünü uygula
+  const initialLang = getPageLanguage();
+  updateSelectedLanguage(initialLang);
+  changeLanguage(initialLang);
 
 });

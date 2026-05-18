@@ -125,18 +125,33 @@ document.addEventListener('DOMContentLoaded', () => {
      Elementler görünür alana girdiğinde animasyon tetiklenir
      ----------------------------------------- */
   const animElements = document.querySelectorAll('.animate-on-scroll');
+  document.documentElement.classList.add('animations-ready');
+
+  const isAnimationInViewport = (el) => {
+    const rect = el.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+    return rect.top < viewportHeight * 0.88 && rect.bottom > viewportHeight * 0.12;
+  };
 
   const animObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && isAnimationInViewport(entry.target)) {
         entry.target.classList.add('visible');
         // Bir kez animasyon yaptıktan sonra gözlemlemeyi bırak
         animObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.2, rootMargin: '0px 0px -12% 0px' });
 
-  animElements.forEach(el => animObserver.observe(el));
+  animElements.forEach(el => {
+    if (isAnimationInViewport(el)) {
+      el.classList.add('visible');
+      return;
+    }
+
+    animObserver.observe(el);
+  });
 
   /* -----------------------------------------
      5. SAYAÇ ANİMASYONU
