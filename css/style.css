@@ -266,7 +266,7 @@ img { max-width: 100%; height: auto; display: block; }
   aspect-ratio: 2 / 1;
   background:
     linear-gradient(180deg, rgba(0,0,0,0) 62%, rgba(0,0,0,0.42) 100%),
-    url('../images/campaigns/campaign1.png') center / cover no-repeat;
+    url('../images/campaigns/campaign1.webp') center / cover no-repeat;
   color: var(--text-dark);
   border-radius: 8px;
   padding: 0;
@@ -1547,7 +1547,6 @@ img { max-width: 100%; height: auto; display: block; }
   grid-column: 1 / -1;
 }
 @media (max-width: 768px) {
-@media (max-width: 768px) {
   .footer-contact-col .footer-brand-logo {
     height: 46px !important;
   }
@@ -1576,7 +1575,7 @@ html, body {
 .header-brand-logo-castrol,
 .footer-brand-logo-castrol,
 .castrol-authority-card img,
-.castrol-ticker-track img {
+.castrol-ticker-logo {
   object-fit: contain !important;
   display: inline-block !important;
   opacity: 1 !important;
