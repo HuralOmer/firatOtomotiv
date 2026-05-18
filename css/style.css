@@ -370,7 +370,7 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
 }
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; filter: brightness(1.05) contrast(1.1) saturate(1.05); }
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(26,26,26,0.93) 0%, rgba(26,26,26,0.65) 50%, rgba(254,190,16,0.1) 100%);
@@ -529,7 +529,7 @@ img { max-width: 100%; height: auto; display: block; }
 .castrol-ticker {
   background: #007a3d;
   overflow: hidden;
-  min-height: 58px;
+  min-height: 90px;
   display: flex;
   align-items: center;
 }
@@ -544,20 +544,20 @@ img { max-width: 100%; height: auto; display: block; }
 .castrol-ticker-track span {
   flex: 0 0 auto;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
 }
 .castrol-ticker-track img {
   flex: 0 0 auto;
-  height: 34px;
-  width: 112px;
+  height: 68px;
+  width: 224px;
   object-fit: contain;
   background: #fff;
-  padding: 3px 8px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
 }
 @keyframes castrolTicker {
   0% { transform: translateX(0); }
