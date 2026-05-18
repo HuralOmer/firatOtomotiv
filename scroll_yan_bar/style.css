@@ -18,15 +18,17 @@
     width: 12px;
     height: 100vh;
     background: var(--scroll-track);
-    pointer-events: none;
+    pointer-events: auto;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 180ms ease, visibility 180ms ease;
+    transition: opacity 180ms ease;
+    touch-action: none;
+    user-select: none;
 }
 
-body.is-scrolling .custom-scrollbar {
+body.is-scrolling .custom-scrollbar,
+body.is-scrollbar-dragging .custom-scrollbar,
+.custom-scrollbar:hover {
     opacity: 1;
-    visibility: visible;
 }
 
 .custom-scrollbar__thumb {
@@ -43,7 +45,13 @@ body.is-scrolling .custom-scrollbar {
         var(--stripe-black) 14px
     );
     border-radius: 999px;
+    cursor: grab;
     transition: background 0.3s ease;
+}
+
+body.is-scrollbar-dragging .custom-scrollbar__thumb {
+    cursor: grabbing;
+    transition: none;
 }
 
 body.is-scrolled .custom-scrollbar__thumb {
