@@ -1551,6 +1551,7 @@ img { max-width: 100%; height: auto; display: block; }
   grid-column: 1 / -1;
 }
 @media (max-width: 768px) {
+@media (max-width: 768px) {
   .footer-contact-col .footer-brand-logo {
     height: 46px !important;
   }
@@ -1569,4 +1570,19 @@ html, body {
 /* Varsayılan Tarayıcı Scrollbar'ını Gizleme (Chrome, Safari) */
 ::-webkit-scrollbar {
   display: none !important;
+}
+
+/* Görünürlük Sorunu Çözümü (Castrol PNG ve Hero WebP) */
+.hero-bg img {
+  filter: none !important; /* Tarayıcı bazlı bozulmaları önlemek için filtrelere reset */
+  object-position: center !important;
+}
+.header-brand-logo-castrol,
+.footer-brand-logo-castrol,
+.castrol-authority-card img,
+.castrol-ticker-track img {
+  object-fit: contain !important;
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
