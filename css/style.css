@@ -536,21 +536,18 @@ img { max-width: 100%; height: auto; display: block; }
 .castrol-ticker-track {
   display: flex;
   align-items: center;
-  gap: 72px;
+  gap: 30px;
   width: max-content;
   animation: castrolTicker 34s linear infinite;
   white-space: nowrap;
 }
-.castrol-ticker-track span {
+.castrol-ticker-text {
   flex: 0 0 auto;
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
 }
-.castrol-ticker-track img {
+.castrol-ticker-logo {
   flex: 0 0 auto;
   height: 38px;
   width: auto;

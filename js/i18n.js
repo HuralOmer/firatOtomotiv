@@ -180,10 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const dict = translations[lang];
     if (!dict) return;
 
-    document.querySelectorAll('.castrol-ticker-track span').forEach((span, index) => {
+    document.querySelectorAll('.castrol-ticker-text').forEach((span, index) => {
       const key = castrolTickerKeys[index % castrolTickerKeys.length];
-      const logo = span.querySelector('img');
-      span.innerHTML = logo ? `${logo.outerHTML} ${dict[key]}` : dict[key];
+      span.textContent = dict[key];
     });
   }
 
