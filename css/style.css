@@ -529,7 +529,7 @@ img { max-width: 100%; height: auto; display: block; }
 .castrol-ticker {
   background: #007a3d;
   overflow: hidden;
-  min-height: 90px;
+  min-height: 64px;
   display: flex;
   align-items: center;
 }
@@ -552,9 +552,11 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .castrol-ticker-track img {
   flex: 0 0 auto;
-  height: 44px;
+  height: 42px;
   width: auto;
   object-fit: contain;
+  border: 3px solid #fff;
+  border-radius: 6px;
 }
 @keyframes castrolTicker {
   0% { transform: translateX(0); }
