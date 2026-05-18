@@ -54,6 +54,50 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* -----------------------------------------
+     2.1 KAMPANYA POP-UP
+     Kullanıcı biraz scroll yaptıktan sonra duyuruyu gösterir.
+     ----------------------------------------- */
+  const campaignPopup = document.getElementById('campaignPopup');
+  const campaignPopupClose = document.getElementById('campaignPopupClose');
+  let campaignPopupShown = false;
+  let campaignPopupClosed = false;
+
+  const openCampaignPopup = () => {
+    if (!campaignPopup || campaignPopupShown || campaignPopupClosed) return;
+    campaignPopupShown = true;
+    campaignPopup.classList.add('active');
+    campaignPopup.setAttribute('aria-hidden', 'false');
+  };
+
+  const closeCampaignPopup = () => {
+    if (!campaignPopup) return;
+    campaignPopupClosed = true;
+    campaignPopup.classList.remove('active');
+    campaignPopup.setAttribute('aria-hidden', 'true');
+  };
+
+  if (campaignPopup) {
+    campaignPopup.setAttribute('aria-hidden', 'true');
+    campaignPopupClose?.addEventListener('click', closeCampaignPopup);
+
+    campaignPopup.addEventListener('click', (e) => {
+      if (e.target === campaignPopup) closeCampaignPopup();
+    });
+
+    campaignPopup.querySelectorAll('a[href="#randevu"]').forEach(link => {
+      link.addEventListener('click', closeCampaignPopup);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeCampaignPopup();
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 140) openCampaignPopup();
+    }, { passive: true });
+  }
+
+  /* -----------------------------------------
      3. AKTİF MENÜ TAKIBI (Intersection Observer)
      Hangi section görünüyorsa o menü linki aktif olur
      ----------------------------------------- */
@@ -352,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const year = document.getElementById('year').value;
 
       // Zorunlu alan kontrolü
-      if (!name || !email || !phone || !date || !time || !vehicle) {
+      if (!name || !email || !phone || !date || !time || !vehicle || !model || !year) {
         showToast('Lütfen tüm zorunlu alanları doldurunuz.', 'error');
         return;
       }

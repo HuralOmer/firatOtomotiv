@@ -28,9 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ".hero p": "hero.desc",
     ".hero-buttons a[href='#randevu']": "hero.btn.appointment",
     ".hero-buttons a[href='#hizmetler']": "hero.btn.services",
+    ".campaign-popup__cta": "nav.appointment",
     ".stat-item:nth-child(1) p": "stats.experience",
     ".stat-item:nth-child(2) p": "stats.happy",
     ".stat-item:nth-child(3) p": "stats.completed",
+
+    // Marka Logoları
+    ".brand-strip .section-tag": "brands.tag",
+    "#brandStripTitle": "brands.title",
 
     // Hizmetler Bölümü
     ".services .section-tag": "services.tag",
@@ -57,6 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
     ".feature-item:nth-child(2) p": "about.feat2.desc",
     ".feature-item:nth-child(3) h4": "about.feat3.title",
     ".feature-item:nth-child(3) p": "about.feat3.desc",
+
+    // Castrol Auto Service
+    ".castrol-authority .section-tag": "castrol.tag",
+    ".castrol-authority-content h2": "castrol.title",
+    ".castrol-authority-content > p": "castrol.desc",
+    ".castrol-authority-points div:nth-child(1) span": "castrol.point1",
+    ".castrol-authority-points div:nth-child(2) span": "castrol.point2",
+    ".castrol-authority-points div:nth-child(3) span": "castrol.point3",
+    ".castrol-authority-card strong": "castrol.card.title",
+    ".castrol-authority-card p": "castrol.card.desc",
 
     // Check-Up
     ".checkup .section-tag": "checkup.tag",
@@ -154,6 +169,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const castrolTickerKeys = [
+    "castrol.ticker.point",
+    "castrol.ticker.standards",
+    "castrol.ticker.oil",
+    "castrol.ticker.checkup"
+  ];
+
+  function translateCastrolTicker(lang) {
+    const dict = translations[lang];
+    if (!dict) return;
+
+    document.querySelectorAll('.castrol-ticker-track span').forEach((span, index) => {
+      const key = castrolTickerKeys[index % castrolTickerKeys.length];
+      const logo = span.querySelector('img');
+      span.innerHTML = logo ? `${logo.outerHTML} ${dict[key]}` : dict[key];
+    });
+  }
+
   // Özel Footer Linkleri (Icon + Text)
   const footerLinksMap = [
     { selector: ".footer-col:nth-child(2) ul li:nth-child(1) a", key: "nav.home" },
@@ -197,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // B. Ticker Bar
     translateTicker(lang);
+    translateCastrolTicker(lang);
 
     // C. Footer Linkleri
     footerLinksMap.forEach(item => {
@@ -236,6 +270,15 @@ document.addEventListener('DOMContentLoaded', () => {
     option.addEventListener('click', (e) => {
       const lang = option.getAttribute('data-lang');
       const flag = option.getAttribute('data-flag');
+      const currentLang = document.documentElement.lang || localStorage.getItem('selectedLang') || 'tr';
+      const shouldReload = currentLang !== lang;
+
+      if (shouldReload) {
+        localStorage.setItem('selectedLang', lang);
+        e.stopImmediatePropagation();
+        window.location.reload();
+        return;
+      }
       
       // Arayüzde bayrağı güncelle
       if(langSelected) {

@@ -72,28 +72,12 @@
       <!-- Header Sol Logolar -->
       <div class="header-brand-logos" aria-label="Servis ve marka logoları">
         <img class="header-brand-logo header-brand-logo-castrol" src="images/brand/castrol_service_point.svg" alt="Castrol Service Point" title="Castrol Service Point">
-        <img class="header-brand-logo header-brand-logo-chevrolet" src="images/brand/chevrolet.svg" alt="Chevrolet" title="Chevrolet">
-        <img class="header-brand-logo header-brand-logo-opel" src="images/brand/opel.svg" alt="Opel" title="Opel">
       </div>
 
       <!-- Header Orta Başlık -->
       <a href="#anasayfa" class="header-title">FIRAT OTOMOTİV</a>
 
-      <!-- Mobil Menü Butonu -->
-      <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <!-- Navigasyon Menüsü -->
-      <nav class="nav" id="navMenu">
-        <a href="#anasayfa">Ana Sayfa</a>
-        <a href="#hizmetler">Hizmetler</a>
-        <a href="#hakkimizda">Hakkımızda</a>
-        <a href="#checkup">Check-Up</a>
-        <a href="#iletisim">İletişim</a>
-        
+      <div class="header-actions">
         <!-- Dil Seçici -->
         <div class="lang-dropdown" id="langDropdown" aria-haspopup="listbox" aria-expanded="false">
           <div class="lang-selected" id="langSelected">
@@ -108,10 +92,38 @@
           </ul>
         </div>
 
-        <a href="#randevu" class="nav-cta"><i class="fa-solid fa-calendar-check"></i> Randevu Al</a>
-      </nav>
+        <!-- Mobil Menü Butonu -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigasyon Menüsü -->
+        <nav class="nav" id="navMenu">
+          <a href="#anasayfa">Ana Sayfa</a>
+          <a href="#hizmetler">Hizmetler</a>
+          <a href="#hakkimizda">Hakkımızda</a>
+          <a href="#checkup">Check-Up</a>
+          <a href="#iletisim">İletişim</a>
+          <a href="#randevu" class="nav-cta"><i class="fa-solid fa-calendar-check"></i> Randevu Al</a>
+        </nav>
+      </div>
     </div>
   </header>
+
+  <!-- Kampanya / Duyuru Pop-up -->
+  <div class="campaign-popup" id="campaignPopup" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Kampanya duyurusu">
+    <div class="campaign-popup__panel">
+      <button class="campaign-popup__close" id="campaignPopupClose" type="button" aria-label="Kampanya duyurusunu kapat">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <a href="#randevu" class="btn btn-primary campaign-popup__cta">
+        <i class="fa-solid fa-calendar-check"></i>
+        Randevu Al
+      </a>
+    </div>
+  </div>
 
   <!-- ============================================
        HERO BÖLÜMÜ
@@ -194,6 +206,52 @@
       <span><i class="fa-solid fa-location-dot"></i> İkitelli / İstanbul</span>
       <span><i class="fa-solid fa-car"></i> Ücretsiz Araç Check-Up Fırsatı</span>
       <span><i class="fa-solid fa-shield-halved"></i> Orijinal Yedek Parça Garantisi</span>
+    </div>
+  </div>
+
+  <!-- ============================================
+       MARKA LOGOLARI
+       Hizmet verilen marka aileleri
+       ============================================ -->
+  <section class="brand-strip" aria-labelledby="brandStripTitle">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-tag">Markalar</span>
+        <h2 id="brandStripTitle">Servis Verdiğimiz Markalar</h2>
+      </div>
+      <div class="brand-strip-grid animate-on-scroll delay-1">
+        <div class="brand-strip-item">
+          <img src="images/brand/opel.svg" alt="Opel" loading="lazy">
+        </div>
+        <div class="brand-strip-item">
+          <img src="images/brand/chevrolet.svg" alt="Chevrolet" loading="lazy">
+        </div>
+        <div class="brand-strip-item">
+          <img src="images/brand/logo-peugeot.svg" alt="Peugeot" loading="lazy">
+        </div>
+        <div class="brand-strip-item">
+          <img src="images/brand/logo-citroen-2022.svg" alt="Citroen" loading="lazy">
+        </div>
+        <div class="brand-strip-item">
+          <img src="images/brand/renault-7.svg" alt="Renault" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CASTROL AUTO SERVICE KAYAN BARI
+       ============================================ -->
+  <div class="castrol-ticker" aria-label="Castrol Auto Service yetkili servis duyuruları">
+    <div class="castrol-ticker-track">
+      <span><img src="images/brand/castrol_service_point.svg" alt="Castrol Service Point" loading="lazy"> Castrol Auto Service yetkili servis noktası</span>
+      <span>Castrol standartlarında bakım ve kontrol süreçleri</span>
+      <span><img src="images/brand/castrol_service_point.svg" alt="Castrol Service Point" loading="lazy"> Doğru yağ seçimi ve profesyonel servis disiplini</span>
+      <span>Şeffaf check-up, güvenilir bakım, uzman ekip</span>
+      <span><img src="images/brand/castrol_service_point.svg" alt="Castrol Service Point" loading="lazy"> Castrol Auto Service yetkili servis noktası</span>
+      <span>Castrol standartlarında bakım ve kontrol süreçleri</span>
+      <span><img src="images/brand/castrol_service_point.svg" alt="Castrol Service Point" loading="lazy"> Doğru yağ seçimi ve profesyonel servis disiplini</span>
+      <span>Şeffaf check-up, güvenilir bakım, uzman ekip</span>
     </div>
   </div>
 
@@ -325,6 +383,41 @@
   </section>
 
   <!-- ============================================
+       CASTROL AUTO SERVICE YETKİLİLİĞİ
+       Hakkımızda sonrası güven vurgusu
+       ============================================ -->
+  <section class="castrol-authority" id="castrol-auto-service">
+    <div class="container">
+      <div class="castrol-authority-grid">
+        <div class="castrol-authority-content animate-on-scroll fade-left">
+          <span class="section-tag">Castrol Auto Service</span>
+          <h2>Castrol Auto Service Yetkili Servis Noktası</h2>
+          <p>Fırat Otomotiv, Castrol Auto Service standartlarıyla bakım süreçlerini takip eder; doğru yağ seçimi, şeffaf kontrol listesi ve güvenilir servis disiplinini aynı çatı altında sunar.</p>
+          <div class="castrol-authority-points">
+            <div>
+              <i class="fa-solid fa-oil-can"></i>
+              <span>Castrol ürün uzmanlığı</span>
+            </div>
+            <div>
+              <i class="fa-solid fa-clipboard-check"></i>
+              <span>Standart kontrol adımları</span>
+            </div>
+            <div>
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              <span>Modern servis ekipmanı</span>
+            </div>
+          </div>
+        </div>
+        <div class="castrol-authority-card animate-on-scroll fade-right">
+          <img src="images/brand/castrol_service_point.svg" alt="Castrol Auto Service" loading="lazy">
+          <strong>Yetkili servis güvencesi</strong>
+          <p>Bakım, check-up ve mekanik servis işlemlerinde markaya uygun profesyonel yaklaşım.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
        CHECK-UP BÖLÜMÜ
        Araç kontrol hizmetinin detaylı tanıtımı
        ============================================ -->
@@ -427,16 +520,16 @@
 
                 <!-- Model -->
                 <div class="form-group">
-                  <label for="model">Model</label>
-                  <select id="model" name="model" disabled>
+                  <label for="model">Model *</label>
+                  <select id="model" name="model" disabled required>
                     <option value="">Önce Marka Seçiniz</option>
                   </select>
                 </div>
 
                 <!-- Model Yılı -->
                 <div class="form-group">
-                  <label for="year">Model Yılı</label>
-                  <select id="year" name="year">
+                  <label for="year">Model Yılı *</label>
+                  <select id="year" name="year" required>
                     <option value="">Yıl Seçiniz</option>
                     <!-- JS ile doldurulacak -->
                   </select>
@@ -510,14 +603,14 @@
 
             <!-- Google Maps Embed - Dolapdere Sanayi Sitesi -->
             <iframe
-              src="https://maps.google.com/maps?q=Organize+Sanayi+B%C3%B6lgesi+Dolapdere+Sanayi+Sitesi+21.+Ada+%C4%B0kitelli+%C4%B0stanbul&t=&z=15&ie=UTF8&iwloc=B&output=embed"
+              src="https://maps.google.com/maps?q=41.0738564,28.8097148&z=17&ie=UTF8&iwloc=B&output=embed"
               width="600"
               height="450"
               style="border:0;"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              title="Fırat Otomotiv Konum - Dolapdere San. Sit.">
+              title="Castrol Auto Service - Fırat Otomotiv konum">
             </iframe>
 
             <!-- Harita Üzeri Bilgi Katmanı -->
@@ -583,8 +676,11 @@
           </ul>
           <div class="footer-brand-logos" aria-label="Servis ve marka logoları">
             <img class="footer-brand-logo footer-brand-logo-castrol" src="images/brand/castrol_service_point.svg" alt="Castrol Service Point" title="Castrol Service Point" loading="lazy">
-            <img class="footer-brand-logo footer-brand-logo-chevrolet" src="images/brand/chevrolet.svg" alt="Chevrolet" title="Chevrolet" loading="lazy">
             <img class="footer-brand-logo footer-brand-logo-opel" src="images/brand/opel.svg" alt="Opel" title="Opel" loading="lazy">
+            <img class="footer-brand-logo footer-brand-logo-chevrolet" src="images/brand/chevrolet.svg" alt="Chevrolet" title="Chevrolet" loading="lazy">
+            <img class="footer-brand-logo footer-brand-logo-peugeot" src="images/brand/logo-peugeot.svg" alt="Peugeot" title="Peugeot" loading="lazy">
+            <img class="footer-brand-logo footer-brand-logo-citroen" src="images/brand/logo-citroen-2022.svg" alt="Citroen" title="Citroen" loading="lazy">
+            <img class="footer-brand-logo footer-brand-logo-renault" src="images/brand/renault-7.svg" alt="Renault" title="Renault" loading="lazy">
           </div>
         </div>
       </div>
@@ -592,7 +688,7 @@
       <!-- Alt Çizgi -->
       <div class="footer-bottom">
         <p>&copy; 2026 Fırat Otomotiv. Tüm hakları saklıdır.</p>
-        <img class="footer-satep-logo" src="images/satep_logo.svg" alt="Satep" title="Satep" loading="lazy">
+        <a class="footer-design-credit" href="https://setap.com.tr" target="_blank" rel="noopener">design by setap.com.tr</a>
         <div class="payment-cards">
           <img class="payment-card-logo" src="images/payment/visa.svg" alt="Visa" title="Visa" loading="lazy">
           <img class="payment-card-logo" src="images/payment/mastercard.svg" alt="Mastercard" title="Mastercard" loading="lazy">
