@@ -529,14 +529,14 @@ img { max-width: 100%; height: auto; display: block; }
 .castrol-ticker {
   background: #007a3d;
   overflow: hidden;
-  min-height: 54px;
+  min-height: 81px;
   display: flex;
   align-items: center;
 }
 .castrol-ticker-track {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 45px;
   width: max-content;
   animation: castrolTicker 34s linear infinite;
   white-space: nowrap;
@@ -544,12 +544,12 @@ img { max-width: 100%; height: auto; display: block; }
 .castrol-ticker-text {
   flex: 0 0 auto;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 .castrol-ticker-logo {
   flex: 0 0 auto;
-  height: 38px;
+  height: 57px;
   width: auto;
   object-fit: contain;
   border: 0;
@@ -1545,10 +1545,22 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .footer-contact-col .footer-brand-logo-castrol {
   grid-column: 1 / -1;
+  height: 72px !important;
+}
+.footer-contact-col .footer-brand-logo-peugeot,
+.footer-contact-col .footer-brand-logo-citroen {
+  height: 68px !important;
 }
 @media (max-width: 768px) {
   .footer-contact-col .footer-brand-logo {
     height: 46px !important;
+  }
+  .footer-contact-col .footer-brand-logo-castrol {
+    height: 62px !important;
+  }
+  .footer-contact-col .footer-brand-logo-peugeot,
+  .footer-contact-col .footer-brand-logo-citroen {
+    height: 58px !important;
   }
 }
 
