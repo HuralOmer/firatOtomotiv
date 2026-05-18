@@ -310,6 +310,7 @@ html.animations-ready .animate-on-scroll.visible,
   min-width: 170px;
   isolation: isolate;
   overflow: visible;
+  white-space: nowrap;
 }
 .campaign-popup__cta.btn-primary:hover {
   transform: scale(1.04);
@@ -358,9 +359,10 @@ html.animations-ready .animate-on-scroll.visible,
   }
   .campaign-popup__cta {
     bottom: 12px;
-    min-width: 132px;
-    padding: 10px 18px;
-    font-size: 0.84rem;
+    min-width: max-content;
+    max-width: calc(100% - 32px);
+    padding: 10px 16px;
+    font-size: clamp(0.72rem, 3.25vw, 0.84rem);
   }
 }
 
