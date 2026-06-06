@@ -210,3 +210,30 @@ function jsonOut(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
 }
+
+// ─────────────────────────────────────────────────────────
+//  Ayar yardımcıları (AYARLAR'ı okur — Ayarlar.gs'te tanımlı)
+// ─────────────────────────────────────────────────────────
+
+// Bir hizmetin kapasite limitini döner (listede yoksa _VARSAYILAN)
+function getHizmetKapasitesi(hizmet) {
+  const cap = AYARLAR.HIZMET_KAPASITE[hizmet];
+  if (typeof cap === 'number') return cap;
+  return AYARLAR.HIZMET_KAPASITE._VARSAYILAN;
+}
+
+// Verilen 'YYYY-MM-DD' tarihi kapalı mı?
+//   - özel tatil listesindeyse  → 'KAPALI_TARIH'
+//   - haftanın kapalı gününüyse → 'KAPALI_GUN'
+//   - yoksa                     → false
+function isKapaliGun(dateStr, ssTz) {
+  if (!dateStr) return false;
+  if (AYARLAR.KAPALI_TARIHLER.indexOf(dateStr) !== -1) return 'KAPALI_TARIH';
+  try {
+    const dateObj = Utilities.parseDate(dateStr, ssTz, 'yyyy-MM-dd');
+    const u = parseInt(Utilities.formatDate(dateObj, ssTz, 'u'), 10);
+    const dow = (u === 7) ? 0 : u; // 0=Paz, 1=Pzt, ... 6=Cmt
+    if (AYARLAR.CALISMA.KAPALI_GUNLER.indexOf(dow) !== -1) return 'KAPALI_GUN';
+  } catch (e) { /* yoksay */ }
+  return false;
+}

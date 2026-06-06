@@ -98,30 +98,7 @@ const AYARLAR = {
     KAPALI_TARIH:   'Seçtiğiniz tarih tatil olarak işaretli. Lütfen farklı bir gün seçin.',
   },
 };
-
-// ──────────────────────────────────────────────────────────
-//  Yardımcı: bir hizmetin kapasite limitini döner
-//  (listede yoksa _VARSAYILAN'a düşer)
-// ──────────────────────────────────────────────────────────
-function getHizmetKapasitesi(hizmet) {
-  const cap = AYARLAR.HIZMET_KAPASITE[hizmet];
-  if (typeof cap === 'number') return cap;
-  return AYARLAR.HIZMET_KAPASITE._VARSAYILAN;
-}
-
-// ──────────────────────────────────────────────────────────
-//  Yardımcı: verilen 'YYYY-MM-DD' tarihi kapalı mı?
-//  (haftanın günü veya özel tarih listesine düşüyor mu)
-// ──────────────────────────────────────────────────────────
-function isKapaliGun(dateStr, ssTz) {
-  if (!dateStr) return false;
-  if (AYARLAR.KAPALI_TARIHLER.indexOf(dateStr) !== -1) return 'KAPALI_TARIH';
-  try {
-    const dateObj = Utilities.parseDate(dateStr, ssTz, 'yyyy-MM-dd');
-    // 'u' formatı: 1=Pzt..7=Paz. 0=Paz olacak şekilde çevir.
-    const u = parseInt(Utilities.formatDate(dateObj, ssTz, 'u'), 10);
-    const dow = (u === 7) ? 0 : u; // 0=Paz, 1=Pzt, ... 6=Cmt
-    if (AYARLAR.CALISMA.KAPALI_GUNLER.indexOf(dow) !== -1) return 'KAPALI_GUN';
-  } catch (e) { /* yoksay */ }
-  return false;
-}
+// ============================================================
+//  Ayar dosyasının sonu. Buradan aşağıya kod EKLENMEZ —
+//  yardımcı fonksiyonlar Kod.gs'in altındadır.
+// ============================================================
