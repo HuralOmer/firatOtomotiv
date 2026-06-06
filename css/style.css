@@ -1003,6 +1003,13 @@ html.animations-ready .animate-on-scroll.visible,
   background: #eee; color: #999; text-decoration: line-through;
 }
 .time-btn i { margin-right: 4px; font-size: 0.75rem; }
+.time-grid-hint {
+  grid-column: 1 / -1;
+  padding: 14px 16px; border-radius: var(--radius-sm);
+  background: rgba(254,190,16,0.08); border: 1px dashed rgba(254,190,16,0.6);
+  color: var(--text-muted); font-size: 0.9rem; text-align: center;
+}
+.time-grid-hint strong { color: var(--text-dark); }
 
 /* Tarih/saat bilgi etiketi */
 .picker-info {

@@ -255,25 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
      Test verileriyle dolu/boş tarih ve saatler
      ----------------------------------------- */
 
-  // Test verisi: Dolu tarihler (tam gün dolu)
-  // Format: 'YYYY-MM-DD'
-  const bookedDates = [
-    '2026-05-18', // Pazartesi - tam gün dolu
-    '2026-05-25', // Pazartesi - tam gün dolu
-  ];
-
-  // Test verisi: Tarihlere göre dolu saatler
-  // Listede olmayan saatler müsait kabul edilir
-  const bookedSlots = {
-    '2026-05-19': ['09:00', '09:30', '10:00', '14:00'],
-    '2026-05-20': ['10:00', '10:30', '11:00', '11:30', '14:00', '14:30'],
-    '2026-05-21': ['09:00', '13:00', '13:30', '16:00'],
-    '2026-05-22': ['09:30', '10:00', '15:00', '15:30', '16:00', '16:30'],
-    '2026-05-23': ['09:00', '09:30', '10:00', '10:30', '11:00'],
-    '2026-05-26': ['11:00', '11:30', '14:00', '14:30', '15:00'],
-    '2026-05-27': ['09:00', '10:30', '13:00', '15:30', '16:00'],
-    '2026-05-28': ['09:00', '09:30', '14:00', '14:30', '15:00', '15:30'],
-  };
+  // Tatil veya tam kapalı günler — buraya 'YYYY-MM-DD' ekle
+  const bookedDates = [];
 
   // Tüm saat dilimleri (09:00 - 17:00, 30dk aralık)
   const allTimeSlots = [
@@ -295,6 +278,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let selectedDate = null;
   let selectedTime = null;
+  let selectedReason = '';
+
+  // Sebep seçildikçe (veya değiştikçe) saatleri yeniden render et
+  const reasonSelect = document.getElementById('reason');
+  if (reasonSelect) {
+    reasonSelect.addEventListener('change', () => {
+      selectedReason = reasonSelect.value;
+      if (selectedDate) renderTimeSlots(selectedDate);
+    });
+  }
 
   // Sonraki 14 günü oluştur (Pazar hariç - servis kapalı)
   if (dateGrid) {
@@ -349,15 +342,37 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTimeSlots(dateStr);
   }
 
-  // Seçilen tarihe göre saat slotlarını oluştur
-  function renderTimeSlots(dateStr) {
+  // Seçilen tarih + sebebe göre saat slotlarını oluştur
+  async function renderTimeSlots(dateStr) {
     if (!timeGrid || !timePickerWrapper) return;
 
-    timeGrid.innerHTML = '';
     timePickerWrapper.classList.add('show');
 
-    const booked = bookedSlots[dateStr] || [];
+    // Sebep henüz seçilmemişse kullanıcıyı yönlendir; saatleri gösterme
+    if (!selectedReason) {
+      timeGrid.innerHTML = '<div class="time-grid-hint">Lütfen önce <strong>Gelme Sebebi</strong> seçiniz.</div>';
+      timePickerWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
 
+    // Yükleniyor göstergesi
+    timeGrid.innerHTML = '<div class="time-grid-hint"><i class="fa-solid fa-spinner fa-spin"></i> Müsait saatler yükleniyor...</div>';
+
+    let booked = [];
+    try {
+      const url = new URL(APPOINTMENT_WEBHOOK_URL);
+      url.searchParams.set('date', dateStr);
+      url.searchParams.set('reason', selectedReason);
+      const res = await fetch(url.toString());
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data.booked)) booked = data.booked;
+      }
+    } catch (err) {
+      console.warn('Müsaitlik bilgisi alınamadı:', err);
+    }
+
+    timeGrid.innerHTML = '';
     allTimeSlots.forEach(slot => {
       const isBooked = booked.includes(slot);
       const btn = document.createElement('button');
@@ -368,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (isBooked) {
         btn.disabled = true;
-        btn.title = 'Bu saat dolu';
+        btn.title = 'Bu saat seçtiğiniz hizmet için dolu';
       } else {
         btn.addEventListener('click', () => selectTime(slot, btn));
       }
@@ -376,7 +391,12 @@ document.addEventListener('DOMContentLoaded', () => {
       timeGrid.appendChild(btn);
     });
 
-    // Animasyonla görünür yap
+    // Önceden seçili saat şimdi dolduysa seçimi temizle
+    if (selectedTime && booked.includes(selectedTime)) {
+      selectedTime = null;
+      if (timeInput) timeInput.value = '';
+    }
+
     timePickerWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
@@ -396,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('appointmentForm');
   const formSuccess = document.querySelector('.form-success');
   // Google Apps Script Web App URL — deploy ettikten sonra buraya yapıştır
-  const APPOINTMENT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwwZpp_JzjxSR914yni-fb0uSRLcMFFz23Glc_nioXO1Sd4LK14gbuSqcWxYF51Dasi/exec';
+  const APPOINTMENT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwWUaeZsNzDsxx30oBPGqL1BeYZW44heUHXu87oneeIp4tIZABbwkxlHeES5H1zp_t8/exec';
 
   if (form) {
     form.addEventListener('submit', async (e) => {
@@ -459,6 +479,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const result = await response.json();
         if (!response.ok || result.status !== 'success') {
+          // Aynı tarih+saat+sebep zaten alınmış: özel mesaj + saatleri yenile
+          if (result.code === 'DUPLICATE') {
+            showToast(result.message || 'Bu saat aynı hizmet için zaten dolu. Lütfen farklı bir saat seçin.', 'error');
+            if (selectedDate) renderTimeSlots(selectedDate);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+            return;
+          }
           throw new Error(result.message || 'Sunucu hatası');
         }
 
