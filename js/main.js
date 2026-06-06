@@ -301,7 +301,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Pazar günü atlama (servis kapalı)
       if (date.getDay() === 0) continue;
 
-      const dateStr = date.toISOString().split('T')[0];
+      // Yerel TZ'de YYYY-MM-DD üret (toISOString UTC'e çevirip bir gün kaydırabiliyor)
+      const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
       const isBooked = bookedDates.includes(dateStr);
 
       const btn = document.createElement('button');
