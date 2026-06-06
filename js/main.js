@@ -359,6 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
     timeGrid.innerHTML = '<div class="time-grid-hint"><i class="fa-solid fa-spinner fa-spin"></i> Müsait saatler yükleniyor...</div>';
 
     let booked = [];
+    let closedDay = false;
     try {
       const url = new URL(APPOINTMENT_WEBHOOK_URL);
       url.searchParams.set('date', dateStr);
@@ -367,9 +368,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data.booked)) booked = data.booked;
+        if (data.closed === true) closedDay = true;
       }
     } catch (err) {
       console.warn('Müsaitlik bilgisi alınamadı:', err);
+    }
+
+    // Kapalı gün ise saat ızgarası yerine bilgi mesajı göster
+    if (closedDay) {
+      timeGrid.innerHTML = '<div class="time-grid-hint">Seçtiğiniz gün servis <strong>kapalı</strong>. Lütfen farklı bir gün seçin.</div>';
+      selectedTime = null;
+      if (timeInput) timeInput.value = '';
+      timePickerWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
     }
 
     timeGrid.innerHTML = '';
@@ -479,9 +490,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const result = await response.json();
         if (!response.ok || result.status !== 'success') {
-          // Aynı tarih+saat+sebep zaten alınmış: özel mesaj + saatleri yenile
-          if (result.code === 'DUPLICATE') {
-            showToast(result.message || 'Bu saat aynı hizmet için zaten dolu. Lütfen farklı bir saat seçin.', 'error');
+          // Bilinen bir hata kodu (kapasite dolu, kapalı gün, mükerrer vb.) —
+          // sunucudan gelen mesajı göster ve saatleri tazele.
+          if (result.code) {
+            showToast(result.message || 'Bu randevu için uygun yer bulunamadı. Lütfen farklı bir saat seçin.', 'error');
             if (selectedDate) renderTimeSlots(selectedDate);
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnHTML;
