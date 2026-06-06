@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('appointmentForm');
   const formSuccess = document.querySelector('.form-success');
   // Google Apps Script Web App URL — deploy ettikten sonra buraya yapıştır
-  const APPOINTMENT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwWUaeZsNzDsxx30oBPGqL1BeYZW44heUHXu87oneeIp4tIZABbwkxlHeES5H1zp_t8/exec';
+  const APPOINTMENT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzOyuUdjqTsLDBVD361ZM-3owat7RHq2mCP4E4mQhLHqwDiKzUVycFlvMe_MFW-mvQi/exec';
 
   if (form) {
     form.addEventListener('submit', async (e) => {
