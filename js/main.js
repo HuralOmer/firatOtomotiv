@@ -395,9 +395,11 @@ document.addEventListener('DOMContentLoaded', () => {
      ----------------------------------------- */
   const form = document.getElementById('appointmentForm');
   const formSuccess = document.querySelector('.form-success');
+  // Google Apps Script Web App URL — deploy ettikten sonra buraya yapıştır
+  const APPOINTMENT_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwwZpp_JzjxSR914yni-fb0uSRLcMFFz23Glc_nioXO1Sd4LK14gbuSqcWxYF51Dasi/exec';
 
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       // Tüm alanları kontrol et
@@ -409,6 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const vehicle = document.getElementById('vehicle').value;
       const model = document.getElementById('model').value;
       const year = document.getElementById('year').value;
+      const reason = document.getElementById('reason') ? document.getElementById('reason').value : '';
 
       // Zorunlu alan kontrolü
       if (!name || !email || !phone || !date || !time || !vehicle || !model || !year) {
@@ -430,10 +433,45 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Başarı durumu
-      form.style.display = 'none';
-      formSuccess.classList.add('show');
-      showToast(`Randevunuz ${date} tarihinde saat ${time} için oluşturuldu!`, 'success');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gönderiliyor...';
+
+      try {
+        const response = await fetch(APPOINTMENT_WEBHOOK_URL, {
+          method: 'POST',
+          // text/plain → CORS preflight tetiklenmez, Apps Script bunu kabul eder
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            fullname: name,
+            email,
+            phone,
+            vehicle,
+            model,
+            year,
+            reason,
+            date,
+            time
+          })
+        });
+
+        const result = await response.json();
+        if (!response.ok || result.status !== 'success') {
+          throw new Error(result.message || 'Sunucu hatası');
+        }
+
+        // Başarı durumu
+        form.style.display = 'none';
+        formSuccess.classList.add('show');
+        showToast(`Randevunuz ${date} tarihinde saat ${time} için oluşturuldu!`, 'success');
+      } catch (err) {
+        console.error('Randevu gönderim hatası:', err);
+        showToast('Randevunuz kaydedilemedi. Lütfen tekrar deneyin.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }
     });
   }
 
